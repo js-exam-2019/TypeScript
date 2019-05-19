@@ -1,8 +1,10 @@
-/* // >>> Generics <<<
+
+
+// >>> Generics <<<
 
 //// A) Implement a generic function, which when called like this: printType<string>("Hello") will print "String" (and similar for other types)
-function printType<T>(param: T) {
-    return param.constructor.name;
+function printType<T>(param: T): string {
+    return typeof(param)
 }
 
 console.log(`type checking...
@@ -15,7 +17,7 @@ console.log(`type checking...
 
 //// B) Implement a generic function which when called like this: 
 function printTypes<T, U, V>(param1: T, param2: U, param3: V): Array<any>{
-    return [param1.constructor.name, param2.constructor.name, param3.constructor.name]
+    return [typeof(param1), typeof(param2), typeof(param3)]
 }
 
 console.log(`
@@ -46,11 +48,11 @@ class DataHolder<T> {
         this._param = param
     }
     
-    getValue() {
+    getValue(): T {
         return this._param
     }
     
-    setValue(param) {
+    setValue(param: T) {
         this._param = param
     }
 }
@@ -77,10 +79,7 @@ interface Owner {
 }
 
 function printOwner(owner: Owner) {
-    return `owner: ${owner.owner}`
+    return `the owner is ${owner.owner}`
 }
 
 console.log(printOwner({ owner: 'noah' }))
-
-// rgument of type '{ notowner: string; }' is not assignable to parameter of type 'Owner'.
-//printOwner({ notowner: 'noah' }) */
